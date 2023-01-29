@@ -158,7 +158,46 @@ reset($arr9);//current i tekrar basa aldik bu sekilde....yani 0.indexe aldik tek
 echo next($arr6)."</br>";
 
 //EN SON EXTRACT VE SORT METHODLARI KALDI DIZI LERDE BIR TEK.....
+echo "***************************************************** <br>";
+$my_arr2 = ["name"=>"Zehra","surname"=>"Erbas","age"=>9,"is_married"=>false,"fav_color"=>"pink","city"=>"Skien"];
 
+//EXTRACT METHODU SAYESINDE SPESIFIK KEY I OLAN HER BIR VALUE NIN KEY LERINI DOGRUDAN DEGISKEN OLARAK
+// KULLANABILIYORUZ O DEGISKENLER HANGI VALUE YE AIT ISE ONU VERIYOR DEGER OLARAK
+//BU OZELLIK GERCEKTEN COK DIKKAT CEKICI BIR OZELLIK....
+extract($my_arr2);
+echo $name . " <br>";//Zehra
+echo $fav_color . " <br>";//pink
+echo $city . " <br>";//Skien
 
+//SIRALAMA FONKSIYONLARI...SORT..KUCUKTEN BUYUGE-A DAN Z YE SIRALAMA YAPAR(VALUE LER ARASINDA)
+$my_numbers = [13,45,6,7,23,18];
+sort($my_numbers);//KUCUKTEN BUYUGE DOGRU SIRALAMA YAPIYOR
+//print_r($my_numbers);
+$my_cities = ["Skien","Larvik","Arendal","Kristiansand"];
+sort($my_cities);//A DAN Z YE SIRALAMA YAPIYOR
+//print_r($my_cities);
 
+//RSORT-REVERSE SORT- YANI TERSTEN SIRALAMA (VALUE LER ARASINDA)
+$my_numbers2 = [13,45,6,7,23,18];
+$my_cities2 = ["Skien","Larvik","Arendal","Kristiansand"];
+rsort($my_numbers2);//BUYUKTEN KUCUGE DOGRU SIRALYOR-VALUE DEGERLERINI
+//print_r($my_numbers2);
+rsort($my_cities2);//BURDA DA Z DEN A YA DOGRU SIRALIYOR
+//print_r($my_cities2);
+
+//A SORT - KEY LERE GORE SIRALAMA YAPIYOR..KEYLERE GORE KUCUKTEN BUYUGE VE A DAN Z YE  SIRALAMA YAPYOR
+$my_numbers3 = ["13"=>13,"45"=>45,"6"=>6,"7"=>7,"23"=>23,"18"=>18];
+$my_cities3 = ["Skien"=>"Skien","Larvik"=>"Larvik","Arendal"=>"Arendal","Kristiansand"=>"Kristiansand"];
+asort($my_numbers3);
+print_r($my_numbers3);
+asort($my_cities3);
+print_r($my_cities3);
+
+//ARSORT- KEY LERE GORE BUYUKTEN KUCUGE VE Z DEN A YA SIRALAMA YAPAR
+$my_numbers4 = ["13"=>13,"45"=>45,"6"=>6,"7"=>7,"23"=>23,"18"=>18];
+arsort($my_numbers4);
+print_r($my_numbers4);
+$my_cities4 = ["Skien","Larvik","Arendal","Kristiansand"];
+arsort($my_cities4);
+print_r($my_cities4);
 ?>

@@ -95,7 +95,7 @@ echo $base_name;//apk.mp4
 //pathinfo-bunu da cok kullanacagiz... 
 $url2 = "http://siteadi.com/oyunlar/bedava/apk.mp4";
 $path = pathinfo($url);
-print_r($path);
+//print_r($path);
 
 /*
 {
@@ -108,14 +108,82 @@ print_r($path);
 
 //glob methodu
 $files = glob("*");//Tum dosyalari verir
-print_r($files);
+//print_r($files);
 /*
 {
 	0: "func1.php",
 	1: "test1",
 	2: "test2"
 }
-
 */
+
+$files2 = glob("*.php");//Tum dosyalari verir
+//print_r($files2);
+
+$files3 = glob("*.{php,txt,html}",GLOB_BRACE);//Tum dosyalari verir
+//print_r($files3);
+
+echo "<br>**********************<br>";
+//sort,rsort, asort, arsort, ksort, krsort
+//Dizi elemanlarini alfabetik ya da artan sekilde siralamaya yarar
+
+$words = ["Skien","Porsgrunn","Larvik","Arendal"];
+sort($words);//A dan z ye dogru siralar
+//print_r($words);
+rsort($words);//Z den A ya siralar
+//print_r($words);
+
+
+
+echo "<br>";
+//Dizinin icindeki key ve value lerden get parametresi olusturma islemi yapar
+$my_arr = ["id"=>1,"name"=>"adem","surname"=>"erbas"];
+echo http_build_query($my_arr);//id=1&amp;name=adem&amp;surname=erbas"
+
+//php ile bir ayni kac gun oldugunu da bulabiliyoruz... 
+$findDaysInMonth = cal_days_in_month(CAL_GREGORIAN,02,2023);//kullanilan takvim turu, month,year
+echo "<br>";
+
+echo $findDaysInMonth;
+die();
+
+echo "SORT AFTER DATE: <br>";
+
+$events_arr = array(  
+	array('title' => 'Event 1', 'date' => '2022-02-25'),  
+	array('title' => 'Event 2', 'date' => '2022-02-21'),  
+	array('title' => 'Event 3', 'date' => '2022-02-15'),  
+	array('title' => 'Event 4', 'date' => '2022-01-22'),  
+	array('title' => 'Event 5', 'date' => '2022-01-18')  
+ );
+
+
+ usort($events_arr, function($a, $b) { 
+	return strtotime($a['date']) - strtotime($b['date']); 
+ });//Tarihi eskiden yeni gore siraliyor...
+
+ print_r($events_arr);
+
+ 
+ //BURDA DA TARIHI YENIDEN ESKIYE DOGRU SIRALANIYOR
+
+ $events_arr2 = array(  
+	array('title' => 'Event 1', 'date' => '2022-02-25'),  
+	array('title' => 'Event 2', 'date' => '2022-02-21'),  
+	array('title' => 'Event 3', 'date' => '2022-02-15'),  
+	array('title' => 'Event 4', 'date' => '2022-01-22'),  
+	array('title' => 'Event 5', 'date' => '2022-01-18')  
+ );
+
+
+ usort($events_arr2, function($a, $b) { 
+	return strtotime($b['date']) - strtotime($a['date']); 
+ });
+
+ print_r($events_arr2);
+
+
+
+
 
 ?>

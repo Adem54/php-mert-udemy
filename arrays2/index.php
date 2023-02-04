@@ -200,4 +200,8 @@ print_r($my_numbers4);
 $my_cities4 = ["Skien","Larvik","Arendal","Kristiansand"];
 arsort($my_cities4);
 print_r($my_cities4);
+
+//KSORT-KRSORT
+//KSORT: ANAHTARLI DIZILERDE ANAHTARA ARTAN BIR SEKILDE SIRALAMA YAPAR
+//KRSORT: ANAHTARLI DIZILERDE ANAHTARA GORE AZALAN SIRALAMA YAPAR
 ?>

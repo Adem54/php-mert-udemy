@@ -25,7 +25,10 @@ if(isset($_POST["submit"])){
 	$content = $_POST['content'] ?? $tutorial['tutorial_content'];
 	$active = $_POST['active'] ?? 0;
 
+	//Kullanicinin form da gonderdigi category nin array gelmesini bekliyoruz ve yine de kontrol ederiz bunu string e ceviririz tablomuzda aki categoryid alani varchar string oldugundan dolayi
 	$categori_IDs = isset($_POST['category']) && is_array($_POST['category']) ? implode(',',$_POST['category']) : null;
+	//BURAYA BIR DAHA DIKKAT VAR ISE ISLEME SOKUYORUZ YOK ISE NULL VER KI...HATA MESAJI VEREBILELIM...IF ICINDE KULLANARAK...MANTIK OLARAK BU
+
 	if(!$title){
 		echo "You must be fill title field";
 	}elseif(!$content){
@@ -90,12 +93,14 @@ try {
 		<textarea name="content" id="content" cols="30" rows="10"><?php echo isset($_POST['tutorial_content']) ? $_POST['tutorial_content'] : $tutorial['tutorial_content'];  ?></textarea> <br><br>
 		
 		Categories: <br>
-		<select name="category[]" id="category" style="width: 100px;" multiple >
-			<option value="">--  choose category --</option><!-- bunu verdik form eger kategori secilmmeden gonderilirse o zaman bu bos value li category gider ve deger bos string olur ve bu sekilde kategory girilmedgini de anlamis oluruz... -->
+		<select name="category[]" id="category" style="width: 100px;" multiple size="5" >
+		<!-- 	<option value="">--  choose category --</option>bunu verdik form eger kategori secilmmeden gonderilirse o zaman bu bos value li category gider ve deger bos string olur ve bu sekilde kategory girilmedgini de anlamis oluruz... -->
 			<?php foreach($categories as $category): ?>
 				<?php echo $category['categori_id']."<br>";?>
 				<?php echo $tutorial['category_id']."<br>";?>
+				<!-- burasi 1 tane tutorial a ait bir data dir ve tutorial id get methodu ile gelir ve biz de o sekilde get tutorial data sini aliriz ve tutorial data sindan da tutorial a ait category id lerini string olarak aliriz ve categories leri loop la dondururken de her bir dongu de tutorial icindeki category icinde hangi kategoriler var ise selected attributunu ver yok ise bos birak deriz ki var olan category ler selected olarak kullanici karsisina ciksin.... -->
 				<option <?php echo in_array(strval($category['categori_id']), explode(",",$tutorial['category_id'])) ? "selected" : ""; ?>   value="<?php echo $category['categori_id'] ;?>"> <?php echo $category['category_name'];?></option>
+
 			<?php endforeach;?>
 		</select>
 		<br><br>

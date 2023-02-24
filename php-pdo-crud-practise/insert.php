@@ -7,6 +7,7 @@ if(isset($_POST["submit"])){
 	$content = $_POST['content'] ?? null;
 	$active = $_POST['active'] ?? 0;
 	
+	
 
 	//Single option durumunda
 	//Eger multiple degil de single option sectirecek isek o zaman select attributunde name='category' yapariz indexer, yani koseli parantez koynmadan onune ve de zaten secilen option id si string olarak gelecegi icin oyle bir durumda normal diger inputlardas ypatimgiz gibi yapariz
@@ -14,8 +15,8 @@ if(isset($_POST["submit"])){
 	//MULTIPLE OPTIONS
 	//BURDA FARKLI BIR DURUM ILE KARSI KARSIYAYIZ...DIZI OLARAK ID LER GELIYOR VE BIZ BUNLARI VERITABANINA DIZI OLARAK KAYDEDEMEYIZ, PEKI NASIL KAYDEDECEGIZ....EGER DIZI OLARAK GELMIS ISE O ZAMAN BIZ ONU STRINGE CEVIRIP ARALARINA VIRGUL KOYARAK KAYDEDECEGIZ.... 
 	
-	//$categori_IDs = isset($_POST['category']) && is_array($_POST['category']) ? implode(',',$_POST['category']) : null;
-	$categori_IDs = $_POST['category'] ??  null;	
+	$categori_IDs = isset($_POST['category']) && is_array($_POST['category']) ? implode(',',$_POST['category']) : null;
+	//$categori_IDs = $_POST['category'] ??  null;	
 	
 
 
@@ -40,8 +41,12 @@ if(isset($_POST["submit"])){
 			':category_id'=>$categori_IDs
 		
 		]);
+
+		$last_insert_id = $db->lastInsertId();
+
 		if($res){
-			header("Location:index.php");
+		//	header("Location:index.php");
+			header("Location:index.php?page=read&id=".$last_insert_id);
 		}
 		} catch (PDOException $e) {
 			echo $e->getMessage();
@@ -80,8 +85,8 @@ try {
 		<textarea name="content" id="content" cols="30" rows="10"><?php echo isset($_POST['content']) ? $_POST['content'] :''  ?></textarea> 
 		<br><br>
 		Categories: <br>
-		<select name="category" id="category" style="width: 100px;"  >
-			<option value="">--  choose category --</option><!-- bunu verdik form eger kategori secilmmeden gonderilirse o zaman bu bos value li category gider ve deger bos string olur ve bu sekilde kategory girilmedgini de anlamis oluruz... -->
+		<select name="category[]" id="category" style="width: 100px;" multiple >
+		<!-- 	<option value="">--  choose category --</option>bunu verdik form eger kategori secilmmeden gonderilirse o zaman bu bos value li category gider ve deger bos string olur ve bu sekilde kategory girilmedgini de anlamis oluruz... -->
 			<?php foreach($categories as $category): ?>
 				<option value="<?php echo $category['categori_id'];?>"> <?php echo $category['category_name'];?></option>
 			<?php endforeach;?>

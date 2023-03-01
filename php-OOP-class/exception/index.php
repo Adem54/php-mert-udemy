@@ -20,8 +20,17 @@ echo "<br>";
 
 $number = 10;
 
-if($number > 5){//sayi 5 ten buyuk oldugu durumda sistemimizin calismayacagini varsayarak kullaniciya da dogru hata mesaji vermekk icin throw new Exception ile mesajimizi yaziyoruz... 
-	throw new Exception("Sayi 5 ten buyuk olamaz");
+function checkNumber(){
+	global $number;
+	if($number > 5){//sayi 5 ten buyuk oldugu durumda sistemimizin calismayacagini varsayarak kullaniciya da dogru hata mesaji vermekk icin throw new Exception ile mesajimizi yaziyoruz... 
+		throw new Exception("Sayi 5 ten buyuk olamaz");
+	}
 }
 
+
+try {
+	checkNumber();
+} catch (Exception $e) {
+	echo $e->getMessage();//Sayi 5 ten buyuk olamaz
+}
 ?>

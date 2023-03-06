@@ -6,8 +6,17 @@ require_once("../config/dbConnection.php");
 
 //Kullanici bilgileir uyusmyorsa yani buraya gelmis ise
 
-if(!$session_manager->checkSessionDataExistInDb())$session_manager->removeSession();
-helper::navigate("login.php");
+if($session_manager->checkSessionDataExistInDb())
+{	
+	$session_manager->removeSession();
+	//setcookie("login","",time() - 3600,"/");//cookies i de silmis oluruz bu sekilde... 
+	var_dump($_COOKIE);
+	helper::navigate("login.php");
+}else{
+	helper::navigate("login.php");
+	
+}
+
 
 
 ?>

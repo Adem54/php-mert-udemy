@@ -14,7 +14,8 @@ session_start();
 // 	echo $ex->getMessage();
 // }
 
-class DbConnection {
+class DbConnection 
+{
 	public ?string $host="";
 	public ?string $dbname="";
 	public ?string $admin="";
@@ -37,6 +38,9 @@ class DbConnection {
 	}
 }
 
+//define sabiti ile biz direk site url mizi her seferinde tanimlamak  yerine bu sekilde kullanmamiz cok daha mantikli ve bestpractise kullanimdir
+define("SITE_URL","../index.php");
+define("SITE_NAME","USER SYSTEM VERSION-1");
 require_once("sessionManager.php");//Bu dbConnection sayfasini zaten her sayfaya require ettigmiz icin, bizmi sessionManager i bu sayfaya  require etmemiz, dbConnection i require eden sayfalarin hepsine require etmek anlamina geliyor zaten
 require_once("helper.php");
 $connection = new DbConnection("localhost","testdb","root","");

@@ -25,3 +25,9 @@
 .form button {
 	padding: 10px;
 }
+
+.link {
+	display: block;
+	padding: 5px;
+	background-color: #ddd;
+}

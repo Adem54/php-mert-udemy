@@ -27,7 +27,7 @@ if(!$session_manager->checkSessionDataExistInDb()){
 <h2>Settings</h2>
 	<a class="link" href="profile.php">Edit Profile Info</a> 
 	<a class="link" href="password.php">Change Password</a> 
-	<a class="link" href="/settings/image.php">Change Profile Image</a> 
+	<a class="link" href="image.php">Change Profile Image</a> 
 	<a class="link" href="<?php echo SITE_URL; ?>">Back to admin-panel</a>
 </body>
 </html>

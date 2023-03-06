@@ -9,7 +9,7 @@ require_once("../config/dbConnection.php");
 if($session_manager->checkSessionDataExistInDb())
 {	
 	$session_manager->removeSession();
-	//setcookie("login","",time() - 3600,"/");//cookies i de silmis oluruz bu sekilde... 
+	setcookie("login","",time() - 3600,"/");//cookies i de silmis oluruz bu sekilde... 
 	var_dump($_COOKIE);
 	helper::navigate("login.php");
 }else{

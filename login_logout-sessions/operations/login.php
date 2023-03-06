@@ -15,10 +15,10 @@ if(isset($_COOKIE["login"]))
 {
 	
 	echo "COOKIE";
-	$getLoginCookie = json_decode($_COOKIE["login"],1);
-	//Eger var ise datamiz onu session a atiyoruz email ve passwordu... yani kullanici giris yaptigi ilk once cookies de var  mi daha onceden o sorgulanir sonra da session icerisine atilir
-	SessionManager::createSession($getLoginCookie);
-	helper::navigate(SITE_URL);
+	// $getLoginCookie = json_decode($_COOKIE["login"],1);
+	// //Eger var ise datamiz onu session a atiyoruz email ve passwordu... yani kullanici giris yaptigi ilk once cookies de var  mi daha onceden o sorgulanir sonra da session icerisine atilir
+	// SessionManager::createSession($getLoginCookie);
+	// helper::navigate(SITE_URL);
 
 	//Buranin mantigini tam olarak anlayacak olursak burasi login sayfasinin en basi ve ilk once cookies in icerisinde login keywordu var mi diye kontrol edilior ve eger login keywordu var ise bu demektir ku bu kullanici daha once beni hatirlaya tiklayarak giris y apmis ve sonucunda bilgileri cookies e kaydedilmis o zaman sayfanin basinda biz ilk olarak cookies e bakiyoruz ve eger cookies da login data si var ise  o zaman diyoruz ki even simdi seni hatirladim ve artik diger prosedurlere hic gerek yok ben hizli bir sekilde seni ana sayfaya yonlendiriyorum....ISTE REMEMBER ME MANTIGI
 	//Bu sayede session oturum suresi bitmis olsa bile, bizim server tarafinda kullanici icin cookies de tanimladigmiz sure boyunca artik kullanici beni hatirla dedeigi zaman otomatik olarak girebilecek
@@ -93,13 +93,13 @@ if(isset($_POST["act"])){//isset ile olmak zorunda..yoksa patlar
 
 	<div class="form">
 		<span>Email:</span>
-<input  type="email" id="email" name="email" value="<?php echo isset($_POST["email"]) ? $_POST["email"] : "";  ?>"> 
+<input  type="email" id="email" name="email" value="<?php echo isset($_COOKIE["login"]["email"]) ? $_COOKIE["login"]["email"] : "";  ?>"> 
 		
 	</div>
 	<br>
 	<div class="form">
 		<span>Password:</span>
-		<input type="password" id="pass" name="password" value="<?php echo isset($_POST["password"]) ? $_POST["password"] : "";  ?>">
+		<input type="password" id="pass" name="password" value="<?php echo isset($_COOKIE["login"]["password"]) ? $_COOKIE["login"]["password"] : "";  ?>">
 	</div>
 
 	<br>
@@ -112,6 +112,9 @@ if(isset($_POST["act"])){//isset ile olmak zorunda..yoksa patlar
 	<div class="form">
 		<input type="hidden" name="act" value="register">
 		<button onclick="OnSubmit(event);" style="cursor:pointer;" type="submit">Login</button>
+		<button style="cursor:pointer; margin-left:1rem;" type="submit">
+		<a href="forgatten.php">Forgot password</a>
+	</button>
 	</div>
 
 </form>
